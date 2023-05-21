@@ -33,6 +33,9 @@ const MyApp = () => {
   //   return null;
   // }
 
+
+
+
   return (
     <Provider store={storeWrapper}>
       {global.alerta.statusBar()}

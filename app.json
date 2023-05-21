@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FitLif",
-    "slug": "FitLif",
+    "name": "FitLife",
+    "slug": "FitLife",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -35,7 +35,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "4e039fab-1aed-4d42-a54d-d500691c1984"
+        "projectId": "52b1bfbb-8147-4215-abc4-f61991ec7600"
       }
     }
   }

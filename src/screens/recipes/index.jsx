@@ -19,8 +19,8 @@ export default function Recipes() {
 
     const [ingredients, setIngredients] = useState('');
     const [goal, setGoal] = useState('');
-    const [calories, setCalories] = useState(0);
-    const [meals, setMeals] = useState(0);
+    const [calories, setCalories] = useState("");
+    const [meals, setMeals] = useState("");
     const [restrictions, setRestrictions] = useState('');
 
     const obj = {
@@ -52,8 +52,13 @@ export default function Recipes() {
 
     const handleSave = () => {
         console.log('Salvando...');
-        dispatch(modificaCampo(obj, 'RECIPES_MODIFY_ESPECIFICATIONS'));
-        global.navigation.navigate('ticketRecipe');
+        if(goal !== '') {
+            dispatch(modificaCampo(obj, 'RECIPES_MODIFY_ESPECIFICATIONS'));
+            global.navigation.navigate('ticketRecipe');
+        } else {
+            alert('Selecione um objetivo');
+        }
+        
     }
 
 
@@ -78,7 +83,7 @@ export default function Recipes() {
                                 <Text style={styles.title}>Ingredientes</Text>
                                 <View style={styleGlobal.divider} />
                                 <Text style={styles.text}>
-                                    Se quiser, você pode descrever abaixo os ingredientes que você tem em casa para as refeições de hoje.
+                                    Descreva abaixo alguns ingredientes que você possui em casa para as refeições de hoje (opcional).
                                 </Text>
                                 <Input
                                     style={styles.input}
@@ -172,7 +177,7 @@ export default function Recipes() {
                                 
                                 <View mt={5}>
                                     <Text style={styles.text}>
-                                        Quantidade de calorias que deseja atingir (opcional)
+                                        Quantidade máxima de calorias que deseja atingir (opcional)
                                     </Text>
                                     <Input
                                         style={styles.input}

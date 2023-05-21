@@ -13,12 +13,12 @@ export default function TicketRecipe() {
     const cardItemRedux = useSelector((state) => state.RecipesReducer.itemSelected);
     const especifications = useSelector((state) => state.RecipesReducer.especifications);
 
+    
+
     const fetchRecipes =  () => {
         setLoading(true);
         const url = 'https://api.openai.com/v1/completions'
-    
-        const prompt = `Insira informações importantes sobre ${especifications.goal != '' ? especifications.goal : 2000} crie ${cardItemRedux.input} para 1 dia com ${especifications.meals != 0 ? especifications.meals.toString()+' refeições': '5 refeições'} ${especifications.goal != '' ? 'com foco em '+especifications.goal+', ' : ''} ${especifications.calories != 0 ? 'para uma dieta de no máximo '+especifications.calories+' calorias': ''} ${especifications.ingredients != '' ? 'utilizando '+especifications.ingredients : ''} ${especifications.restrictions != '' ? 'para alguem com '+especifications.restrictions : ''} insira o total de calorias e informações nutricionais dos alimentos consumidos no final do dia.`
-
+        const prompt = `Insira informações importantes sobre ${especifications.goal != '' ? especifications.goal : 2000} crie ${cardItemRedux.input} para 1 dia com ${especifications.meals != 0 ? especifications.meals.toString()+' refeições': '5 refeições'} ${especifications.goal != '' ? 'com foco em '+especifications.goal+', ' : ''} ${especifications.calories != 0 ? 'para uma dieta de no máximo '+especifications.calories+' calorias': ''} ${especifications.ingredients != '' ? 'utilizando '+especifications.ingredients : ''} ${especifications.restrictions != '' ? 'para alguem com '+especifications.restrictions : ''} insira o modo de preparo em cada refeição. insira o total de calorias e informações nutricionais dos alimentos consumidos no final do dia.`
         console.log('prompt', prompt)
         fetch(url, {
             method: "POST",
@@ -36,7 +36,7 @@ export default function TicketRecipe() {
         })
         .then((response) => response.json())
         .then((json) => {    
-            console.log("JSON:", json.choices[0].text);
+            console.log("JSON:", json);
             setRecipes(json.choices[0].text);
             setLoading(false);
         })
@@ -66,12 +66,12 @@ export default function TicketRecipe() {
         });
         if (result.action === Share.sharedAction) {
             if (result.activityType) {
-            console.warn("compartilhado com o tipo de atividade de: " + result.activityType);
+            console.log("compartilhado com o tipo de atividade de: " + result.activityType);
             } else {
-            console.warn("compartilhado");
+            console.log("compartilhado");
             }
         } else if (result.action === Share.dismissedAction) {
-            console.warn("descartado");
+            console.log("descartado");
         }
         } catch (error) {
             console.log(error.message);
